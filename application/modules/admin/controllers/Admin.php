@@ -13,16 +13,28 @@ class Admin extends MY_Controller
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->library('pagination');
+        $this->load->library('form_validation');
         date_default_timezone_set('Asia/Kolkata');
     }
 
+
     public function index()
     {
-        $this->load->view('temp/head');
-        $this->load->view('temp/sidebar');
-        $this->load->view('index');
-        $this->load->view('temp/footer');
+        $this->check_login();
     }
+    public function check_login()
+    {
+        if (!$this->session->userdata('admin_id')) {
+            redirect(base_url('login'));
+        } else {
+            $this->load->view('temp/head');
+            $this->load->view('temp/sidebar');
+            $this->load->view('index');
+            $this->load->view('temp/footer');
+        }
+    }
+
+
 
     public function add_menu()
     {
@@ -63,13 +75,55 @@ class Admin extends MY_Controller
         $this->load->view('temp/footer');
     }
 
+    public function create_new_role()
+    {
+        try {
+            if ($this->session->userdata('admin_id') != "" || $this->session->userdata('admin_id') != NULL) {
+                $this->form_validation->set_rules('role_name', 'Role Name', 'trim|required');
+                $this->form_validation->set_rules('role_description', 'Role Description', 'trim|required');
+                $this->form_validation->set_rules('status', 'Status', 'trim|required');
+
+                if ($this->form_validation->run() == FALSE) {
+                    redirect(base_url() . 'add-role');
+                } else {
+                    $role_name = $this->input->post('role_name');
+                    $role_description = $this->input->post('role_description');
+                    $status = $this->input->post('status');
+                    $insertdate = [
+                        'role_name' => $role_name,
+                        'role_description' => $role_description,
+                        'status' => $status,
+                        'creation_date' => date('d-m-Y')
+                    ];
+                    $this->Crud_modal->data_insert('role_master', $insertdate);
+                    $this->session->set_flashdata('role_insert_message', '<div class="alert alert-info"><strong>Success!</strong> Role has Create Succefully.</div>');
+                    redirect(base_url() . 'role-list');
+                }
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function role_list()
     {
-        $this->load->view('temp/head');
-        $this->load->view('temp/sidebar');
-        $this->load->view('role-list');
-        $this->load->view('temp/footer');
+
+        try {
+            if ($this->session->userdata('admin_id') != "" || $this->session->userdata('admin_id') != NULL) {
+
+                $data['roleData'] = $this->Crud_modal->fetch_all_data('*', 'role_master', 'status= 1');
+                $this->load->view('temp/head');
+                $this->load->view('temp/sidebar');
+                $this->load->view('role-list', $data);
+                $this->load->view('temp/footer');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
+    // {
+
+    // }
 
     public function add_permission()
     {
@@ -339,6 +393,5 @@ class Admin extends MY_Controller
         $this->load->view('temp/sidebar');
         $this->load->view('employeePosting-list');
         $this->load->view('temp/footer');
-        
     }
 }

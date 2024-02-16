@@ -1,16 +1,19 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-$route['default_controller'] = 'admin/Admin/index';
+$route['default_controller'] = 'login/Login/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-
+$route['login'] = 'login/Login/login';
+$route['logout'] = 'login/Login/logout';
+$route['admin-dashboard'] = 'admin/Admin/check_login';
 $route['add-menu'] = 'admin/Admin/add_menu';
 $route['menu-list'] = 'admin/Admin/menu_list';
 $route['add-sub-menu'] = 'admin/Admin/add_sub_menu';
 $route['sub-menu-list'] = 'admin/Admin/sub_menu_list';
 $route['add-role'] = 'admin/Admin/add_role';
+$route['create-new-role'] = 'admin/Admin/create_new_role';
 $route['role-list'] = 'admin/Admin/role_list';
 $route['add-permission'] = 'admin/Admin/add_permission';
 $route['permissions-list'] = 'admin/Admin/permissions_list';

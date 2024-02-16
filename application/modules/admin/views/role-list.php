@@ -1,5 +1,3 @@
-
-
 <div id="main-content">
     <div class="container-fluid">
 
@@ -16,7 +14,7 @@
                 <div class="col-md-6 col-sm-12 text-md-end">
                     <div class="d-inline-flex text-start">
                         <div class="me-2">
-                            <a href="add-menu" class="btn btn-primary mt-3">Role List</a>
+                            <a href="<?php echo base_url('add-role') ?>" class="btn btn-primary mt-3">Role List</a>
 
                         </div>
                         <span id="bh_visitors"></span>
@@ -35,82 +33,33 @@
                             <tr>
                                 <th>Sr.no</th>
                                 <th>Role Name</th>
+                                <th>Role description</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                            $i = 1;
+                            foreach ($roleData as $roleList) { ?>
+                                <tr>
+                                    <td><?php echo $i++; ?></td>
+                                    <td><?php echo $roleList['role_name']; ?></td>
 
+                                    <td><?php echo $roleList['role_description']; ?></td>
+                                    <td><?php $roleList['role_description'] == 1 ? '<span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span>' : '<span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Inactive</span>'; ?></td>
+                                    <td>
+                                        <a href="#" onClick="javascript:if(confirm('Do You Want to Edit Menu ?')){return true;}else{return false}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
 
-                            <tr>
-                                <td>1</td>
-                                <td>General Manager</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Senior Executive </td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Assistant Manager</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Manager</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Senior Manager</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Customer Service Representative</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Head Office ( HO )</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Regional Manager</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Asst. Admin</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>State Manager</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>11</td>
-                                <td>Admin</td>
-                                <td><span class="badge rounded-pill bg-primary me-1 mb-1 mt-1">Active</span></td>
-                                <td><a href="#" onClick="javascript:if(confirm('Do You Want to Edit Role ?')){return true;}else{return false}"><i class="fa fa-edit"></i></a></td>
-                            </tr>
+                                </tr>
+                            <?php   } ?>
+
                         </tbody>
                     </table>
-                </div> <!-- .card end -->
+                </div>
 
             </div>
         </div>

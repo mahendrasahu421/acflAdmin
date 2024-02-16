@@ -27,7 +27,7 @@
                     <li><a href="app-inbox"><i class="fa fa-envelope-open me-2"></i>Messages</a></li>
                     <li><a href="javascript:void(0);"><i class="fa fa-cog me-2"></i>Settings</a></li>
                     <li class="divider"></li>
-                    <li><a href="page-login"><i class="fa fa-power-off me-2"></i>Logout</a></li>
+                    <li><a href="<?php echo base_url('logout')?>"><i class="fa fa-power-off me-2"></i>Logout</a></li>
                 </ul>
             </div>
         </div>

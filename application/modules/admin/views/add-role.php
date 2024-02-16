@@ -1,5 +1,3 @@
-
-
 <div id="main-content">
     <div class="container-fluid">
 
@@ -16,7 +14,7 @@
                 <div class="col-md-6 col-sm-12 text-md-end">
                     <div class="d-inline-flex text-start">
                         <div class="me-2">
-                            <a href="role-list" class="btn btn-primary mt-3">Role List</a>
+                            <a href="<?php echo base_url('role-list') ?>" class="btn btn-primary mt-3">Role List</a>
 
                         </div>
                         <span id="bh_visitors"></span>
@@ -34,21 +32,29 @@
                         <h6 class="card-title">Add Role</h6>
                     </div>
                     <div class="card-body">
-                        <form action="https://vms.cry.in/insert_role_master" method="post" id="form" name="pForm" onsubmit=" return validate();" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <form action="<?php echo base_url('create-new-role') ?>" method="post" id="form" name="pForm" onsubmit=" return validate();" enctype="multipart/form-data" class="needs-validation" novalidate>
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <label for="validationCustom04" class="form-label">Role Name</label>
                                     <input type="text" name="role_name" class="form-control" id="validationCustom02" value="" placeholder="Role Name" required>
                                     <div class="invalid-feedback"> Select Role Name</div>
+                                    <?= form_error('role_name', '<div class="text-danger">', '</div>'); ?>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="validationCustom04" class="form-label">Role Description</label>
+                                    <input type="text" name="role_description" class="form-control" id="validationCustom02" value="" placeholder="Role Name" required>
+                                    <div class="invalid-feedback"> Enter Role Description </div>
+                                    <?= form_error('role_description', '<div class="text-danger">', '</div>'); ?>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 mb-3">
                                     <label for="validationCustom04" class="form-label">Status</label>
                                     <select class="form-select select2 " name="status" id="validationCustom04" required>
-                                        <option selected  value="0">Select Status</option>
+                                        <option selected value="0">Select Status</option>
                                         <option value="1">Active</option>
                                         <option value="2">Inactive</option>
                                     </select>
                                     <div class="invalid-feedback">Select Status</div>
+                                    <?= form_error('status', '<div class="text-danger">', '</div>'); ?>
 
                                 </div>
                             </div>
